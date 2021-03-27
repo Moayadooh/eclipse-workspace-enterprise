@@ -1,0 +1,6 @@
+
+Oracle JDBC:
+https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html
+
+Oracle Database:
+https://1drv.ms/u/s!Alnuo60tuKoxhDhUq_Mg2f_mDhhz?e=d1ljmK
