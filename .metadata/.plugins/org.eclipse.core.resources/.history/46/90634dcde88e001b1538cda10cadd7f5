@@ -1,0 +1,236 @@
+package MyPackage;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JTable;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JScrollPane;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class ManageEmployeesFrame {
+	
+	private JFrame frame;
+	private JTextField txtFname;
+	private JTextField txtLname;
+	private JTextField txtMobileNo;
+	private JTextField txtSalary;
+	private JTable table;
+	DefaultTableModel model;
+	static Connection con;
+	
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ManageEmployeesFrame window = new ManageEmployeesFrame();
+					window.frame.setVisible(true);
+					con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","system","");
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public ManageEmployeesFrame() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 903, 758);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblFirstName = new JLabel("First Name:");
+		lblFirstName.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblFirstName.setBounds(35, 157, 114, 33);
+		frame.getContentPane().add(lblFirstName);
+		
+		JLabel lblLastName = new JLabel("Last Name:");
+		lblLastName.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblLastName.setBounds(35, 211, 114, 33);
+		frame.getContentPane().add(lblLastName);
+		
+		JLabel lblMobileNo = new JLabel("Mobile No:");
+		lblMobileNo.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblMobileNo.setBounds(47, 269, 114, 33);
+		frame.getContentPane().add(lblMobileNo);
+		
+		JLabel lblSalary = new JLabel("Salary:");
+		lblSalary.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblSalary.setBounds(80, 320, 114, 33);
+		frame.getContentPane().add(lblSalary);
+		
+		txtFname = new JTextField();
+		txtFname.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		txtFname.setBounds(148, 157, 191, 41);
+		frame.getContentPane().add(txtFname);
+		txtFname.setColumns(10);
+		
+		txtLname = new JTextField();
+		txtLname.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		txtLname.setColumns(10);
+		txtLname.setBounds(148, 211, 191, 41);
+		frame.getContentPane().add(txtLname);
+		
+		txtMobileNo = new JTextField();
+		txtMobileNo.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		txtMobileNo.setColumns(10);
+		txtMobileNo.setBounds(148, 269, 191, 41);
+		frame.getContentPane().add(txtMobileNo);
+		
+		txtSalary = new JTextField();
+		txtSalary.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		txtSalary.setColumns(10);
+		txtSalary.setBounds(148, 318, 191, 41);
+		frame.getContentPane().add(txtSalary);
+		
+		//Scroll Pane
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(349, 20, 530, 656);
+		frame.getContentPane().add(scrollPane);
+		
+		//Table
+		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int i = table.getSelectedRow();
+				txtFname.setText(model.getValueAt(i, 0).toString());
+				txtLname.setText(model.getValueAt(i, 1).toString());
+				txtMobileNo.setText(model.getValueAt(i, 2).toString());
+				txtSalary.setText(model.getValueAt(i, 3).toString());
+			}
+		});
+		model = new DefaultTableModel();
+		Object[] column = {"First Name","Last Name","Mobile No","Salary"};
+		Object[] row = new Object[4];
+		model.setColumnIdentifiers(column);
+		table.setModel(model);
+		scrollPane.setViewportView(table);
+		
+		try {
+			String sql = "SELECT * FROM employee";
+			Statement stmt = con.createStatement();
+			ResultSet result = stmt.executeQuery(sql);
+			while (result.next()) {
+				System.out.println(result.getInt(1));
+				System.out.println(result.getString("FIRST_NAME"));
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		
+		//Add Button
+		JButton btnAdd = new JButton("Add");
+		btnAdd.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(txtFname.getText().trim().equals("")||txtLname.getText().trim().equals("")||txtMobileNo.getText().trim().equals("")||txtSalary.getText().trim().equals(""))
+				{
+					JOptionPane.showMessageDialog(null, "Please fill all fields!");
+				}
+				else
+				{
+					row[0] = txtFname.getText();
+					row[1] = txtLname.getText();
+					row[2] = txtMobileNo.getText();
+					row[3] = txtSalary.getText();
+					model.addRow(row);
+					
+					txtFname.setText(null);
+					txtLname.setText(null);
+					txtMobileNo.setText(null);
+					txtSalary.setText(null);
+				}
+			}
+		});
+		btnAdd.setBounds(35, 383, 304, 41);
+		frame.getContentPane().add(btnAdd);
+		
+		//Update Button
+		JButton btnUpdate = new JButton("Update");
+		btnUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int i = table.getSelectedRow();
+				if(i>=0)
+				{
+					if(txtFname.getText().trim().equals("")||txtLname.getText().trim().equals("")||txtMobileNo.getText().trim().equals("")||txtSalary.getText().trim().equals(""))
+					{
+						JOptionPane.showMessageDialog(null, "Please fill all fields!");
+					}
+					else
+					{
+						model.setValueAt(txtFname.getText(), i, 0);
+						model.setValueAt(txtLname.getText(), i, 1);
+						model.setValueAt(txtMobileNo.getText(), i, 2);
+						model.setValueAt(txtSalary.getText(), i, 3);
+						JOptionPane.showMessageDialog(null, "Updated Successfuly.");
+					}
+				}
+				else
+					JOptionPane.showMessageDialog(null, "No Row Selected!");
+			}
+		});
+		btnUpdate.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnUpdate.setBounds(35, 434, 304, 41);
+		frame.getContentPane().add(btnUpdate);
+		
+		//Delete Button
+		JButton btnDelete = new JButton("Delete");
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int i = table.getSelectedRow();
+				if(i>=0)
+				{
+					model.removeRow(i);
+					JOptionPane.showMessageDialog(null, "Deleted Successfuly.");
+				}
+				else
+					JOptionPane.showMessageDialog(null, "No Row Selected!");
+			}
+		});
+		btnDelete.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnDelete.setBounds(35, 485, 304, 41);
+		frame.getContentPane().add(btnDelete);
+		
+		//Clear Button
+		JButton btnClear = new JButton("Clear");
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtFname.setText(null);
+				txtLname.setText(null);
+				txtMobileNo.setText(null);
+				txtSalary.setText(null);
+			}
+		});
+		btnClear.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnClear.setBounds(35, 536, 304, 41);
+		frame.getContentPane().add(btnClear);
+	}
+}

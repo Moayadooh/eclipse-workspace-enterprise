@@ -1,0 +1,17 @@
+
+Oracle JDK:
+https://www.oracle.com/in/java/technologies/javase-downloads.html
+
+Eclipse:
+https://www.eclipse.org/downloads/packages/release/neon/2/eclipse-ide-java-developers
+
+MySQL Community Server:
+https://dev.mysql.com/downloads/mysql/
+
+MySQL Workbench:
+https://dev.mysql.com/downloads/workbench/
+
+Connector/J:
+https://dev.mysql.com/downloads/connector/j/
+
+Code Formating --> CTRL + SHIFT + F
