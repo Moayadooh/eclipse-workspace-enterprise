@@ -68,6 +68,30 @@ public class ManageEmployeesFrame {
 		txtSalary.setText(null);
 	}
 	
+	public static boolean isDigit(String strNum) {
+	    if (strNum == null) {
+	        return false;
+	    }
+	    try {
+	        Integer.parseInt(strNum);
+	    } catch (NumberFormatException nfe) {
+	        return false;
+	    }
+	    return true;
+	}
+	
+	public static boolean isDouble(String strNum) {
+	    if (strNum == null) {
+	        return false;
+	    }
+	    try {
+	        Double.parseDouble(strNum);
+	    } catch (NumberFormatException nfe) {
+	        return false;
+	    }
+	    return true;
+	}
+	
 	/**
 	 * Launch the application.
 	 */
@@ -170,7 +194,7 @@ public class ManageEmployeesFrame {
 		scrollPane.setViewportView(table);
 		
 		try {
-			con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","system","");
+			con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","system","Mm123121");
 			DisplayTableRows();
 		} catch (SQLException ex) {
 			ex.printStackTrace();
@@ -185,26 +209,36 @@ public class ManageEmployeesFrame {
 					JOptionPane.showMessageDialog(null, "Please fill all the fields!");
 				else
 				{
-					/*row[0] = txtFname.getText();
-					row[1] = txtLname.getText();
-					row[2] = txtMobileNo.getText();
-					row[3] = txtSalary.getText();
-					model.addRow(row);*/
-					try {
-						String query = "{call sp_addEmp(?,?,?,?)}"; 
-						CallableStatement callStmt = con.prepareCall(query);  
-						callStmt.setString(1, txtFname.getText().toString());
-						callStmt.setString(2, txtLname.getText().toString());
-						callStmt.setInt(3, Integer.parseInt(txtMobileNo.getText().toString()));
-						callStmt.setDouble(4, Double.parseDouble(txtSalary.getText().toString()));
-						callStmt.execute();
-					} catch (SQLException ex) {
-						ex.printStackTrace();
+					if(isDigit(txtMobileNo.getText().toString()) && txtMobileNo.getText().toString().length()==8)
+					{
+						if(isDouble(txtSalary.getText().toString()))
+						{
+							/*row[0] = txtFname.getText();
+							row[1] = txtLname.getText();
+							row[2] = txtMobileNo.getText();
+							row[3] = txtSalary.getText();
+							model.addRow(row);*/
+							try {
+								String query = "{call sp_addEmp(?,?,?,?)}"; 
+								CallableStatement callStmt = con.prepareCall(query);  
+								callStmt.setString(1, txtFname.getText().toString());
+								callStmt.setString(2, txtLname.getText().toString());
+								callStmt.setInt(3, Integer.parseInt(txtMobileNo.getText().toString()));
+								callStmt.setDouble(4, Double.parseDouble(txtSalary.getText().toString()));
+								callStmt.execute();
+							} catch (SQLException ex) {
+								ex.printStackTrace();
+							}
+							
+							ClearTableRows();
+							DisplayTableRows();
+							ClearTextFields();
+						}
+						else
+							JOptionPane.showMessageDialog(null, "Please Enter Valid Salary!\ne.g:123.12");
 					}
-					
-					ClearTableRows();
-					DisplayTableRows();
-					ClearTextFields();
+					else
+						JOptionPane.showMessageDialog(null, "Please Enter Valid MobileNo!\ne.g:12345678");
 				}
 			}
 		});

@@ -25,13 +25,10 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
-			<item value="net.tap5.vote"/>
 		</list>
 		<list key="groupId">
-			<item value="net.tap5"/>
 		</list>
 		<list key="artifactId">
-			<item value="vote"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -47,10 +44,12 @@
 	</section>
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="ww"/>
 		</list>
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="ss"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -67,5 +66,28 @@
 	<section name="org.eclipse.m2e.core.pom.overview">
 	</section>
 	<section name="org.eclipse.m2e.core.pom.dependencies">
+	</section>
+	<section name="org.eclipse.m2e.core.ui.internal.wizards.CustomArchetypeDialog">
+		<list key="archetypeGroupId">
+			<item value="org.apache.tapestry"/>
+			<item value="https://repository.apache.org/content/repositories/staging/archetype-catalog.xml"/>
+		</list>
+		<list key="archetypeArtifactId">
+			<item value="quickstart"/>
+			<item value="https://repository.apache.org/content/repositories/staging/archetype-catalog.xml"/>
+		</list>
+		<list key="archetypeVersion">
+			<item value="5.3.1-SNAPSHOT"/>
+			<item value="https://repository.apache.org/content/repositories/staging/archetype-catalog.xml"/>
+			<item value="5.3.0-SNAPSHOT"/>
+		</list>
+		<list key="repositoryUrl">
+			<item value="https://repository.apache.org/content/repositories/staging/archetype-catalog.xml"/>
+			<item value=""/>
+		</list>
+	</section>
+	<section name="org.eclipse.m2e.core.ui.internal.preferences.RemoteArchetypeCatalogDialog">
+	</section>
+	<section name="org.eclipse.m2e.core.ui.internal.preferences.LocalArchetypeCatalogDialog">
 	</section>
 </section>
