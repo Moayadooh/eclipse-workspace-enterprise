@@ -194,7 +194,7 @@ public class ManageEmployeesFrame {
 		scrollPane.setViewportView(table);
 		
 		try {
-			con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","system","Mm123121");
+			con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","system","123");
 			DisplayTableRows();
 		} catch (SQLException ex) {
 			ex.printStackTrace();

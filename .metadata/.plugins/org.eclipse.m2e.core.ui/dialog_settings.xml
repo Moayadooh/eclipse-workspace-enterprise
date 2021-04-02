@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="C:\Users\moaya\eclipse-workspace-enterprise\vote\pom.xml"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -25,12 +26,14 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
+			<item value="net.tap5.activemq_all"/>
 			<item value="net.tap5.vote"/>
 		</list>
 		<list key="groupId">
 			<item value="net.tap5"/>
 		</list>
 		<list key="artifactId">
+			<item value="activemq-all"/>
 			<item value="vote"/>
 		</list>
 		<list key="projectNameTemplate">
