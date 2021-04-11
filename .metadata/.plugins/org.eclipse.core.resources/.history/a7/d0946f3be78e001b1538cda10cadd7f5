@@ -1,3 +1,0 @@
-module employees_management {
-	requires java.desktop;
-}
