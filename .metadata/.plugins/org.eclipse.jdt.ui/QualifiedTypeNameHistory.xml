@@ -14,4 +14,9 @@
     <fullyQualifiedTypeName name="org.apache.catalina.filters.RequestFilter"/>
     <fullyQualifiedTypeName name="org.apache.tapestry5.http.services.RequestFilter"/>
     <fullyQualifiedTypeName name="java.io.PrintWriter"/>
+    <fullyQualifiedTypeName name="javax.persistence.Entity"/>
+    <fullyQualifiedTypeName name="javax.persistence.Id"/>
+    <fullyQualifiedTypeName name="org.apache.tapestry5.beaneditor.NonVisual"/>
+    <fullyQualifiedTypeName name="javax.persistence.GeneratedValue"/>
+    <fullyQualifiedTypeName name="javax.persistence.GenerationType"/>
 </qualifiedTypeNameHistroy>

@@ -293,7 +293,7 @@ public class ManageEmployeesFrame {
 				int i = table.getSelectedRow();
 				if(i>=0)
 				{
-					if (JOptionPane.showConfirmDialog(null, "Are you sure you want to delete?", "CONFIRMATION", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+					if (JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this employee?", "CONFIRMATION", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
 					{
 						//model.removeRow(i);
 						try {
