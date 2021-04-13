@@ -3,39 +3,33 @@
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
       xmlns:p="tapestry:parameter">
         <!-- Most of the page content, including <head>, <body>, etc. tags, comes from Layout.tml -->
-
-    <p>${message:greeting}</p>
-
-    <p>The current time is: <strong>${currentTime}</strong></p>
-
-    <!-- A Zone is a component that can be updated in place, triggered by other components. -->
-    <t:zone t:id="zone">
-        <p>
-            You have clicked the link <strong>${clickCount}</strong> times.
-        </p>
-
-        <p>
-            [
-            <t:actionlink t:id="increment">increment</t:actionlink>
-            ]
-            &nbsp;
-            [
-            <t:actionlink t:id="incrementAjax" zone="^">increment (via Ajax)</t:actionlink>
-            ]
-        </p>
-
-    </t:zone>
+    
+    
+    <ul>
+    	<t:zone t:id="listZone" elementName="div">
+    		<t:loop source="items" value="item">
+    			<li>
+    				<t:actionlink zone="listZone" t:id="vote" context="item">+</t:actionlink>
+    					${item.votes}
+    				<a href="${item.url}">${item.title}</a>
+    			</li>
+    		</t:loop>
+    	</t:zone>
+    </ul>
+    
+    <t:beaneditform t:id="form" object="newItem"></t:beaneditform>
 
     <p:sidebar>
         <p>
-            You are running Tapestry version <strong>${tapestryVersion}</strong>.
+            Just to prove this is live:
         </p>
-
-
+        
         <p>
-            [
-            <t:pagelink page="Index">refresh page</t:pagelink>
-            ]
+            The current time is:<br/> ${currentTime}.
+        </p>
+        
+        <p>
+            [<t:pagelink page="Index">refresh</t:pagelink>]
         </p>
     </p:sidebar>
 

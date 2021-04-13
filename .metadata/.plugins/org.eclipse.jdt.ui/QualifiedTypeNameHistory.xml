@@ -19,4 +19,15 @@
     <fullyQualifiedTypeName name="org.apache.tapestry5.beaneditor.NonVisual"/>
     <fullyQualifiedTypeName name="javax.persistence.GeneratedValue"/>
     <fullyQualifiedTypeName name="javax.persistence.GenerationType"/>
+    <fullyQualifiedTypeName name="net.tap5.vote1.entities.Item"/>
+    <fullyQualifiedTypeName name="org.hibernate.Session"/>
+    <fullyQualifiedTypeName name="org.apache.tapestry5.hibernate.annotations.CommitAfter"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="org.hibernate.Criteria"/>
+    <fullyQualifiedTypeName name="org.apache.tapestry5.ioc.annotations.Inject"/>
+    <fullyQualifiedTypeName name="org.apache.tapestry5.annotations.Property"/>
+    <fullyQualifiedTypeName name="org.apache.tapestry5.annotations.Component"/>
+    <fullyQualifiedTypeName name="org.apache.tapestry5.corelib.components.BeanEditForm"/>
+    <fullyQualifiedTypeName name="java.net.URL"/>
+    <fullyQualifiedTypeName name="org.apache.tapestry5.corelib.components.Zone"/>
 </qualifiedTypeNameHistroy>
