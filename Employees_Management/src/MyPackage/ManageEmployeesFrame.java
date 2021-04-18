@@ -22,6 +22,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JPanel;
 
 public class ManageEmployeesFrame {
 	
@@ -198,6 +199,7 @@ public class ManageEmployeesFrame {
 			DisplayTableRows();
 		} catch (SQLException ex) {
 			ex.printStackTrace();
+			//JOptionPane.showMessageDialog(null, "some thing wen wrong!");
 		}
 		
 		//Add Button
@@ -329,5 +331,9 @@ public class ManageEmployeesFrame {
 		btnClear.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnClear.setBounds(35, 536, 304, 41);
 		frame.getContentPane().add(btnClear);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(168, 169, 10, 10);
+		frame.getContentPane().add(panel);
 	}
 }
