@@ -26,17 +26,10 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
-			<item value="net.tap5.vote1"/>
-			<item value="net.tap5.activemq_all"/>
-			<item value="net.tap5.vote"/>
 		</list>
 		<list key="groupId">
-			<item value="net.tap5"/>
 		</list>
 		<list key="artifactId">
-			<item value="vote1"/>
-			<item value="activemq-all"/>
-			<item value="vote"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
